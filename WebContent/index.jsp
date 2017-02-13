@@ -23,18 +23,9 @@
 			<input type="submit" name="navegacao" value="listar usuarios">
 		</form>
 	</td>
-	<td>	
-		<form action="AtualizarUsuario" method="post">
-			<input type="submit" name="navegacao" value="atualizar">
-		</form>
-	</td>
-	<td>
-		<form action="deletarUsuario" method="post">
-			<input type="submit" name="navegacao" value="voltar">
-		</form>
-	</td>
 	
 </tr>
 </table>
+
 </body>
 </html>

@@ -10,13 +10,18 @@
 </head>
 <body>
 	<table>
+		<tr>
+				<td>Nome</td>
+				<td>Alterar</td>
+				<td>Deletar</td>
+			</tr>
 	<% 
 		List<UsuarioGateway> listaUsuarios = (List<UsuarioGateway>) request.getAttribute("Usuarios");
 	
 		for (UsuarioGateway usuarioi : listaUsuarios){
 	%>
 		<tr>
-			<td>'<%=usuarioi.getNome() %>'</td><td><form action="AlterarUsuario" method="get"><input hidden="true" name="id" value='<%=usuarioi.getId()%>'><input type="submit" value="Editar"></form></td>
+			<td><%=usuarioi.getNome()%></td><td><form action="AlterarUsuario" method="get"><input hidden="true" name="id" value='<%=usuarioi.getId()%>'><input type="submit" value="Editar"></form></td>
 			<td><form action="DeletarUsuario" method="post"><input hidden="true" name="id" value='<%=usuarioi.getId()%>'><input type="submit" value="Deletar"></form></td></td>
 		</tr>
 		<% } %>

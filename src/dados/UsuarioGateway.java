@@ -75,7 +75,6 @@ public class UsuarioGateway {
 	}
 	
 	public void salvarUsuario()  throws ConexaoException, SQLException, ClassNotFoundException {
-			System.out.println("foi no gateway");
 			Conexao.initConnection();
 			String sql = "INSERT INTO usuario (nome,email,telefone) VALUES(?,?,?);";
 			PreparedStatement psmt = Conexao.prepare(sql);
@@ -87,12 +86,9 @@ public class UsuarioGateway {
 			if (linhasAfetadas == 0) {
 				throw new ConexaoException();
 			}
-			System.out.println("antes do commit");
 			
 	        Conexao.commit();
 			Conexao.closeConnection();
-			System.out.println("fim");
-			
 	}
 	
 	
