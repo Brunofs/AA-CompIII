@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dados.GrupoGateway;
 import dados.UsuarioGateway;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
+import entidades.Grupo;
 
 /**
  * Servlet implementation class ListarGrupos
@@ -37,7 +37,7 @@ public class ListarGrupos extends HttpServlet {
 		
 		long id = Long.parseLong(request.getParameter("id"));
 
-		List<GrupoGateway> grupo = new ArrayList<GrupoGateway>();
+		List<Grupo> grupo = new ArrayList<Grupo>();
 		TMGrupo aux = new TMGrupo();
 		try {
 			grupo =  aux.RecuperaTodosGruposDoUsuario(id);

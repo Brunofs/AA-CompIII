@@ -13,6 +13,7 @@ import dados.GrupoGateway;
 import dados.UsuarioGateway;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
+import entidades.Grupo;
 import excecoes.ConexaoException;
 
 /**
@@ -38,7 +39,7 @@ public class AlterarGrupo extends HttpServlet {
 		String idd = request.getParameter("id");
 		long id= Long.parseLong(idd);
 		TMGrupo novo = new TMGrupo();
-		GrupoGateway aux;
+		Grupo aux;
 		try {
 			aux = novo.RecuperaGrupo(id);
 			request.setAttribute("Grupo",aux);

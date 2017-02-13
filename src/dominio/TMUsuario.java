@@ -6,6 +6,7 @@ import java.util.List;
 
 import dados.UsuarioFinder;
 import dados.UsuarioGateway;
+import entidades.Usuario;
 import excecoes.ConexaoException;
 
 public class TMUsuario {
@@ -43,7 +44,6 @@ public class TMUsuario {
 		}
 		
 		UsuarioGateway usuarioGateway = UsuarioFinder.recuperaUsuario(id);
-		
 		usuarioGateway.setNome(nome);
 		usuarioGateway.setTelefone(telefone);
 		usuarioGateway.setId(id);
@@ -54,25 +54,25 @@ public class TMUsuario {
 			e.printStackTrace();
 		}
 		
-		return id;
+		return usuarioGateway.getId();
 	}
 	
-	public static UsuarioGateway RecuperaUsuario(long id) throws Exception{
+	public static Usuario RecuperaUsuario(long id) throws Exception{
 		UsuarioGateway u = UsuarioFinder.recuperaUsuario(id);
-		return u;
+		Usuario userRet = new Usuario(u.getId(),u.getNome(),u.getEmail(),u.getTelefone());
+		return userRet;
 	}
 	
-	public static List<UsuarioGateway> RecuperaTodosUsuarios() throws Exception{
+	public static List<Usuario> RecuperaTodosUsuarios() throws Exception{
 		Collection<UsuarioGateway> usuariosGateway = UsuarioFinder.listarTodos();
-		ArrayList<UsuarioGateway> usuarios = new ArrayList<UsuarioGateway>();
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 		
 		for(UsuarioGateway u : usuariosGateway){
-			UsuarioGateway usuario = new UsuarioGateway(u.getNome(), u.getEmail(), u.getTelefone());
-			usuario.setId(u.getId());
+			Usuario usuario = new Usuario(u.getId(),u.getNome(), u.getEmail(), u.getTelefone());
 			usuarios.add(usuario);
 		}
 		
-		return (List<UsuarioGateway>) usuarios;
+		return (List<Usuario>) usuarios;
 	}
 	
 	public static void DeletarUsuario(long id) throws Exception {

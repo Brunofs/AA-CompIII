@@ -83,7 +83,6 @@ public class GrupoFinder {
 				String descricao = result.getString("descricao");
 				String regras = result.getString("regra");
 				int limite	=	result.getInt("limite");
-				System.out.println(nome +" "+ descricao);
 				GrupoGateway grupo =new GrupoGateway(nome,descricao,regras,limite);
 				grupo.setId(result.getLong("id"));
 				grup=grupo;
@@ -95,7 +94,6 @@ public class GrupoFinder {
 			e1.printStackTrace();
 		}
 
-		System.out.println(grup.getNome() +" "+ grup.getDescricao());
 		return grup;
 	}
 

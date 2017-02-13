@@ -1,4 +1,4 @@
-<%@page import="dados.UsuarioGateway"%>
+<%@page import="entidades.Usuario"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<%UsuarioGateway usuario = (UsuarioGateway) request.getAttribute("Usuario");%>
+<%Usuario usuario = (Usuario) request.getAttribute("Usuario");%>
 	
 	<form  action="CriarGrupo" method="post">
 		<input hidden="true" name="id"value=<%=usuario.getId() %>>

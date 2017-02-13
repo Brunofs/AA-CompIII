@@ -1,4 +1,4 @@
-<%@page import="dados.GrupoGateway"%>
+<%@page import="entidades.Grupo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -16,9 +16,9 @@
 				<td>Deletar</td>
 			</tr>
 <% 
-		List<GrupoGateway> listaGrupos = (List<GrupoGateway>) request.getAttribute("Grupos");
+		List<Grupo> listaGrupos = (List<Grupo>) request.getAttribute("Grupos");
 	
-		for (GrupoGateway grupoi : listaGrupos){
+		for (Grupo grupoi : listaGrupos){
 	%>
 		<tr>
 			<td><%=grupoi.getNome() %></td>

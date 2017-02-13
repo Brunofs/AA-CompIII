@@ -1,4 +1,4 @@
-<%@page import="dados.VeiculoGateway"%>
+<%@page import="entidades.Veiculo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -9,11 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%VeiculoGateway veiculo = (VeiculoGateway) request.getAttribute("Veiculo");%>
+<%Veiculo veiculo = (Veiculo) request.getAttribute("Veiculo");%>
 
 		<form  action="AlterarVeiculo" method="post">
 			<input hidden="true" name="id"value='<%=veiculo.getId() %>'>
-			<input hidden="true" name="usuario_id"value='<%=veiculo.getUsurio_id() %>'>
+			<input hidden="true" name="usuario_id"value='<%=veiculo.getIdUser() %>'>
 			Modelo: <input readOnly="true"type="text" name="modelo" value='<%=veiculo.getModelo() %>'><br>
 			Placa: <input readOnly="true" type="text" name="placa" value='<%=veiculo.getPlaca()%>'><br>
 			cor: <input type="text" name="cor" value='<%=veiculo.getCor()%>'><br>

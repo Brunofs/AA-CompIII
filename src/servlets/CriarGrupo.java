@@ -2,6 +2,8 @@ package servlets;
 import dados.GrupoGateway;
 import dados.UsuarioGateway;
 import dominio.TMGrupo;
+import dominio.TMUsuario;
+import entidades.Usuario;
 import dados.UsuarioFinder;
 import excecoes.ConexaoException;
 
@@ -36,8 +38,14 @@ public class CriarGrupo extends HttpServlet {
 		
 		String idd = request.getParameter("id");
 		long id= Long.parseLong(idd);
-		UsuarioGateway aux = UsuarioFinder.recuperaUsuario(id);
-		request.setAttribute("Usuario",aux);
+		Usuario aux;
+		try {
+			aux = TMUsuario.RecuperaUsuario(id);
+			request.setAttribute("Usuario",aux);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("grupo/CriarGrupo.jsp").forward(request,response);
 	}
 

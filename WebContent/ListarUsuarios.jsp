@@ -1,4 +1,4 @@
-<%@page import="dados.UsuarioGateway"%>
+<%@page import="entidades.Usuario"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -16,9 +16,9 @@
 				<td>Deletar</td>
 			</tr>
 	<% 
-		List<UsuarioGateway> listaUsuarios = (List<UsuarioGateway>) request.getAttribute("Usuarios");
+		List<Usuario> listaUsuarios = (List<Usuario>) request.getAttribute("Usuarios");
 	
-		for (UsuarioGateway usuarioi : listaUsuarios){
+		for (Usuario usuarioi : listaUsuarios){
 	%>
 		<tr>
 			<td><%=usuarioi.getNome()%></td><td><form action="AlterarUsuario" method="get"><input hidden="true" name="id" value='<%=usuarioi.getId()%>'><input type="submit" value="Editar"></form></td>

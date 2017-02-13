@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dados.UsuarioGateway;
 import dominio.TMUsuario;
+import entidades.Usuario;
 import excecoes.ConexaoException;
 
 /**
@@ -38,7 +39,7 @@ public class AlterarUsuario extends HttpServlet {
 		String idd = request.getParameter("id");
 		long id= Long.parseLong(idd);
 		TMUsuario novo = new TMUsuario();
-		UsuarioGateway aux;
+		Usuario aux;
 		try {
 			aux = novo.RecuperaUsuario(id);
 			request.setAttribute("Usuario",aux);

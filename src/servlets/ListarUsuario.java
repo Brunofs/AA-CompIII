@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dados.UsuarioGateway;
 import dominio.TMUsuario;
+import entidades.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +36,7 @@ public class ListarUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		List<UsuarioGateway> user = new ArrayList<UsuarioGateway>();
+		List<Usuario> user = new ArrayList<Usuario>();
 		TMUsuario aux = new TMUsuario();
 		try {
 			user =  aux.RecuperaTodosUsuarios();

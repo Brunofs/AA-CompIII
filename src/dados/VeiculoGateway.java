@@ -52,7 +52,6 @@ public class VeiculoGateway {
 		String sql = "UPDATE veiculo SET cor = ? WHERE ID = " + this.getId() + ";";
 		
 		PreparedStatement psmt = Conexao.prepare(sql);
-		System.out.println(this.getCor());
 		psmt.setString(1, this.getCor());
 		
 		int linhasAfetadas = psmt.executeUpdate();

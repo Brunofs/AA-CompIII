@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import dados.UsuarioFinder;
 import dados.UsuarioGateway;
 import dominio.TMGrupo;
+import dominio.TMUsuario;
 import dominio.TMVeiculo;
+import entidades.Usuario;
 import excecoes.ConexaoException;
 
 /**
@@ -37,8 +39,14 @@ public class CriarVeiculo extends HttpServlet {
 
 		String idd = request.getParameter("id");
 		long id= Long.parseLong(idd);
-		UsuarioGateway aux = UsuarioFinder.recuperaUsuario(id);
-		request.setAttribute("Usuario",aux);
+		Usuario aux;
+		try {
+			aux = TMUsuario.RecuperaUsuario(id);
+			request.setAttribute("Usuario",aux);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.getRequestDispatcher("veiculo/CriarVeiculo.jsp").forward(request,response);
 	}
 

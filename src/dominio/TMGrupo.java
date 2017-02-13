@@ -10,6 +10,7 @@ import dados.GrupoGateway;
 import dados.UsuarioFinder;
 import dados.UsuarioGateway;
 import dados.UsuarioGrupoGateway;
+import entidades.Grupo;
 import excecoes.ConexaoException;
 
 public class TMGrupo {
@@ -72,30 +73,28 @@ public class TMGrupo {
 		
 	}
 	
-	public static List<GrupoGateway> RecuperaTodosGruposDoUsuario(long userId) throws Exception{
+	public static List<Grupo> RecuperaTodosGruposDoUsuario(long userId) throws Exception{
 		Collection<GrupoGateway> gruposGateway = GrupoFinder.listarTodosPorUsuario(userId);
-		ArrayList<GrupoGateway> grupos = new ArrayList<GrupoGateway>();
+		ArrayList<Grupo> grupos = new ArrayList<Grupo>();
 		
 		for(GrupoGateway g : gruposGateway){
-			GrupoGateway grupo = new GrupoGateway(g.getNome(), g.getDescricao(), g.getRegras(),g.getLimAvalicao());
-			grupo.setId(g.getId());
+			Grupo grupo = new Grupo(g.getId(),g.getNome(), g.getDescricao(), g.getRegras(),g.getLimAvalicao());
 			grupos.add(grupo);
 		}
 		
-		return (List<GrupoGateway>) grupos;
+		return (List<Grupo>) grupos;
 	}
 	
-	public static GrupoGateway RecuperaGrupo(long grupoId) throws Exception{
+	public static Grupo RecuperaGrupo(long grupoId) throws Exception{
 			if(grupoId <0){
 				throw new IllegalArgumentException("id");
 			}
 			
 			GrupoGateway g = GrupoFinder.recuperaPorId(grupoId);
-			System.out.println("###MT"+g.getNome()+" "+ g.getDescricao());
-			return g;
+			Grupo gRet = new Grupo(g.getId(),g.getNome(),g.getDescricao(),g.getRegras(),g.getLimAvalicao());
+			return gRet;
 	}
-	
-	
+		
 	public static void convidarUsuario(String email,long idGrupo){
 		
 		if(idGrupo <0){

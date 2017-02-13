@@ -1,4 +1,4 @@
-<%@page import="dados.VeiculoGateway"%>
+<%@page import="entidades.Veiculo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -15,9 +15,9 @@
 				<td>Alterar</td>
 			</tr>
 <% 
-		List<VeiculoGateway> listaVeiculos = (List<VeiculoGateway>) request.getAttribute("Veiculos");
+		List<Veiculo> listaVeiculos = (List<Veiculo>) request.getAttribute("Veiculos");
 	
-		for (VeiculoGateway veiculoi : listaVeiculos){
+		for (Veiculo veiculoi : listaVeiculos){
 	%>
 		<tr>
 			<td><%=veiculoi.getModelo() %></td>

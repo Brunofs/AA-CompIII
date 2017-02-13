@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dados.GrupoGateway;
 import dominio.TMGrupo;
+import entidades.Grupo;
 
 /**
  * Servlet implementation class ConvidarUsuario
@@ -33,7 +34,7 @@ public class ConvidarUsuario extends HttpServlet {
 				String idd = request.getParameter("id");
 				long id= Long.parseLong(idd);
 				TMGrupo novo = new TMGrupo();
-				GrupoGateway aux;
+				Grupo aux;
 				try {
 					aux = novo.RecuperaGrupo(id);
 					request.setAttribute("Grupo",aux);

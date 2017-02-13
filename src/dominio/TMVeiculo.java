@@ -13,6 +13,7 @@ import dados.UsuarioFinder;
 import dados.UsuarioGateway;
 import dados.VeiculoFinder;
 import dados.VeiculoGateway;
+import entidades.Veiculo;
 import excecoes.ConexaoException;
 
 public class TMVeiculo {
@@ -41,8 +42,6 @@ public class TMVeiculo {
 			throw new NumberFormatException("id");
 		}
 		
-		
-		
 		if(cor == null || cor.isEmpty()){
 			throw new IllegalArgumentException("cor");
 		}
@@ -54,7 +53,6 @@ public class TMVeiculo {
 		}
 		
 		veiculo.setCor(cor);
-		System.out.println("@#@"+veiculo.getCor());
 		try {
 			veiculo.alterarVeiculo();
 		} catch (ClassNotFoundException | ConexaoException | SQLException e) {
@@ -64,26 +62,26 @@ public class TMVeiculo {
 		
 	}
 	
-	public static List<VeiculoGateway> RecuperaTodosVeiculosDoUsuario(long userId) throws Exception{
+	public static List<Veiculo> RecuperaTodosVeiculosDoUsuario(long userId) throws Exception{
 		Collection<VeiculoGateway> veiculoGateway = VeiculoFinder.listarTodosDesseUsuario(userId);
-		ArrayList<VeiculoGateway> vei = new ArrayList<VeiculoGateway>();
+		ArrayList<Veiculo> vei = new ArrayList<Veiculo>();
 		
 		for(VeiculoGateway v : veiculoGateway){
-			VeiculoGateway veiculo = new VeiculoGateway(v.getModelo(), v.getPlaca(), v.getCor());
-			veiculo.setId(v.getId());
+			Veiculo veiculo = new Veiculo(v.getId(),v.getModelo(), v.getPlaca(), v.getCor(),v.getUsurio_id());
 			vei.add(veiculo);
 		}
 		
-		return (List<VeiculoGateway>) vei;
+		return (List<Veiculo>) vei;
 	}
 	
-	public static VeiculoGateway RecuperaVeiculo(long veiculoId) throws Exception{
+	public static Veiculo RecuperaVeiculo(long veiculoId) throws Exception{
 		if(veiculoId <0){
 			throw new IllegalArgumentException("id");
 		}
 		
 		VeiculoGateway v = VeiculoFinder.recuperaPorId(veiculoId);
-		return v;
+		Veiculo vRest = new Veiculo(v.getId(),v.getModelo(),v.getPlaca(),v.getCor(),v.getUsurio_id());
+		return vRest;
 	}	
 	
 }

@@ -14,6 +14,7 @@ import dados.GrupoGateway;
 import dados.VeiculoGateway;
 import dominio.TMGrupo;
 import dominio.TMVeiculo;
+import entidades.Veiculo;
 
 /**
  * Servlet implementation class ListarVeiculos
@@ -36,7 +37,7 @@ public class ListarVeiculos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("id"));
 
-		List<VeiculoGateway> veiculos = new ArrayList<VeiculoGateway>();
+		List<Veiculo> veiculos = new ArrayList<Veiculo>();
 		TMVeiculo aux = new TMVeiculo();
 		try {
 			veiculos =  aux.RecuperaTodosVeiculosDoUsuario(id);

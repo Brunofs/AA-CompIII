@@ -1,4 +1,4 @@
-<%@page import="dados.UsuarioGateway"%>
+<%@page import="entidades.Usuario"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%UsuarioGateway usuario = (UsuarioGateway) request.getAttribute("Usuario");%>
+<%Usuario usuario = (Usuario) request.getAttribute("Usuario");%>
 	<table>
 	<tr>
 		<h2>Alterar Usuario</h2>

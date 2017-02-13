@@ -14,6 +14,7 @@ import dados.VeiculoGateway;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
 import dominio.TMVeiculo;
+import entidades.Veiculo;
 import excecoes.ConexaoException;
 
 /**
@@ -40,7 +41,7 @@ public class AlterarVeiculo extends HttpServlet {
 				long id= Long.parseLong(idd);
 				
 				TMVeiculo novo = new TMVeiculo();
-				VeiculoGateway aux;
+				Veiculo aux;
 				try {
 					aux = novo.RecuperaVeiculo(id);
 					request.setAttribute("Veiculo",aux);
