@@ -13,12 +13,13 @@
 		List<GrupoGateway> listaGrupos = (List<GrupoGateway>) request.getAttribute("Grupos");
 	
 		for (GrupoGateway grupoi : listaGrupos){
-	%>
+	%><table>
 		<tr>
 			<td>'<%=grupoi.getNome() %>'</td>
 			<td><form action="AlterarGrupo" method="get"><input hidden="true" name="id" value='<%=grupoi.getId()%>'><input type="submit" value="Editar"></form></td>
 			<td><form action="DeletarGrupo" method="post"><input hidden="true" name="id" value='<%=grupoi.getId()%>'><input type="submit" value="Deletar"></form></td>
 		</tr>
+		</table>
 		<% } %>
 
 
