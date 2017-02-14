@@ -40,6 +40,7 @@ public class UsuarioFinder {
 	return list;
 	}
 	
+	
 	public static UsuarioGateway recuperaUsuarioPorEmail(String emaill){
 		UsuarioGateway userR = new UsuarioGateway();
 		

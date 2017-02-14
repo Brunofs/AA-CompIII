@@ -34,6 +34,15 @@ public class LogradouroGateway {
 			throw new ConexaoException();
 		}
 		
+		try (ResultSet generatedKeys = psmt.getGeneratedKeys()) {
+		    if (generatedKeys.next()) {
+		        this.setId(generatedKeys.getInt(1));
+		    }
+		    else {
+		        throw new SQLException("Ocorreu um erro ao adquirir o id do novo grupo.");
+		    }
+		 }
+		
         Conexao.commit();
 		Conexao.closeConnection();
 	}
