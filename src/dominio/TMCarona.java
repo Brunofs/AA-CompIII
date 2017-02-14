@@ -1,37 +1,36 @@
 package dominio;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
+import dados.CaronaFinder;
 import dados.CaronaGateway;
-import dados.UsuarioGateway;
+import entidades.Carona;
 import excecoes.ConexaoException;
 
 public class TMCarona {
 	
-	public static Long CriarCarona(String nome,String email,String telefone) throws ClassNotFoundException, ConexaoException, SQLException{
-		if(nome == null || nome.isEmpty()){
-			throw new IllegalArgumentException("nome");
-		}
-		
-		if(email == null || email.isEmpty()){
-			throw new IllegalArgumentException("email");
-		}
-		
-		if(telefone == null || telefone.isEmpty()){
-			throw new IllegalArgumentException("telefone");
-		}
-		
-		UsuarioGateway usuario = new UsuarioGateway(nome, email, telefone);
-		usuario.salvarUsuario();
-		long id = usuario.getId();
-		return id;
-	}
 
-	public void CriarCarona( long idGrupo, long idVeiculo, String data, String horarioSaida, int numVagas,	long logOrigem, long logDestino) throws ClassNotFoundException, ConexaoException, SQLException {
-		System.out.println("DSAASSADD");
+	public void CriarCarona(long idUsuario, long idGrupo, long idVeiculo, String data, String horarioSaida, int numVagas,	long logOrigem, long logDestino) throws ClassNotFoundException, ConexaoException, SQLException {
 		
 		CaronaGateway caronaGate = new CaronaGateway(idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino);
-		caronaGate.salvarUsuario();
+		caronaGate.salvarCarona();
+	}
+	
+	
+	public static List<Carona> RecuperaTodasCaronasDoGrupo(long idGrupo,long idUsuario) throws Exception{
+		
+		Collection<CaronaGateway> caronaGateway = CaronaFinder.listarTodosPorGrupo(idGrupo);
+		ArrayList<Carona> caronas = new ArrayList<Carona>();
+		
+		for(CaronaGateway c : caronaGateway){
+			Carona carona = new Carona(c.getIdCarona(),c.getData(),c.getHorarioSaida(),c.getNumVagas(),c.getIdVeiculo(),c.getIdGrupo(),c.getLogOrigem(),c.getLogDestino());
+			caronas.add(carona);
+		}
+		
+		return (List<Carona>) caronas;
 	}
 
 }

@@ -52,7 +52,7 @@ public class CriarCarona extends HttpServlet {
 		long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
 		long idGrupo = Long.parseLong(request.getParameter("idGrupo"));
 		long idVeiculo = Long.parseLong(request.getParameter("idVeiculo"));
-		String data = (String) request.getParameter("data");
+		String data = (String) request.getParameter("dia");
 		String horarioSaida = (String) request.getParameter("horarioSaida");
 		int numVagas = Integer.parseInt(request.getParameter("numVagas"));
 		long logOrigem = Long.parseLong(request.getParameter("logOrigem"));
@@ -61,7 +61,7 @@ public class CriarCarona extends HttpServlet {
 		TMCarona carona = new TMCarona();
 		
 		try {
-			carona.CriarCarona(idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino);
+			carona.CriarCarona(idUsuario,idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino);
 		} catch (ClassNotFoundException | ConexaoException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

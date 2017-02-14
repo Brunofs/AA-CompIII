@@ -15,7 +15,7 @@
 			<input hidden="true" name="idGrupo" value='<%=request.getAttribute("Grupo")%>'>
 			Veiculo: <input type="text" name="idVeiculo" ><br>
 			dia: <input  type="text" name="dia" ><br>
-			horario de saida: <input type="text" name="horaSaida"><br>
+			horario de saida: <input type="text" name="horarioSaida"><br>
 			Numero de vagas :<input type="text" name="numVagas"><br>
 			Logradouro Origem :<input type="text" name="logOrigem"><br>
 			Logradouro Destino :<input type="text" name="logDestino"><br>

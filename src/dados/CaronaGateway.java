@@ -8,7 +8,6 @@ import excecoes.ConexaoException;
 public class CaronaGateway {
 
 	long idCarona;
-	long idUsuario;
 	long idGrupo;
 	long idVeiculo;
 	String data;
@@ -17,10 +16,10 @@ public class CaronaGateway {
 	long logOrigem;
 	long logDestino;
 	
-	public void salvarUsuario()  throws ConexaoException, SQLException, ClassNotFoundException {
+	public void salvarCarona()  throws ConexaoException, SQLException, ClassNotFoundException {
 		Conexao.initConnection();
 		System.out.println("VAi porra!");
-		String sql = "INSERT INTO carona(idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino) VALUES(?,?,?,?,?,?,?);";
+		String sql = "INSERT INTO public.carona(grupo_id,veiculo_id,data,horariosaida,num_vagas,logOrigem_id,logDestino_id) VALUES(?,?,?,?,?,?,?);";
 			PreparedStatement psmt = Conexao.prepare(sql);
 			psmt.setLong(1, this.getIdGrupo());
 			psmt.setLong(2, this.getIdVeiculo());
@@ -56,12 +55,6 @@ public class CaronaGateway {
 	}
 	public void setIdCarona(long idCarona) {
 		this.idCarona = idCarona;
-	}
-	public long getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(long idUsuario) {
-		this.idUsuario = idUsuario;
 	}
 	public long getIdGrupo() {
 		return idGrupo;

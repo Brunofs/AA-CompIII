@@ -1,7 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,24 +10,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dados.GrupoGateway;
-import dados.UsuarioGateway;
+import dominio.TMCarona;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
+import entidades.Carona;
 import entidades.Grupo;
-import excecoes.ConexaoException;
+import entidades.Usuario;
 
 /**
- * Servlet implementation class AlterarGrupo
+ * Servlet implementation class ListarCaronas
  */
-@WebServlet("/AlterarGrupo")
-public class AlterarGrupo extends HttpServlet {
+@WebServlet("/ListarCaronas")
+public class ListarCaronas extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AlterarGrupo() {
+    public ListarCaronas() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +36,20 @@ public class AlterarGrupo extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String idGrupo = request.getParameter("idGrupo");
-		String idUsuario = request.getParameter("idUsuario");
-		long id= Long.parseLong(idGrupo);
-		TMGrupo novo = new TMGrupo();
-		Grupo aux;
+		long idGrupo = Long.parseLong(request.getParameter("idGrupo"));
+		long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
+		List<Carona> caronas = new ArrayList<Carona>();
+		TMCarona aux = new TMCarona();
 		try {
-			aux = novo.RecuperaGrupo(id);
-			request.setAttribute("Grupo",aux);
+			caronas =  aux.RecuperaTodasCaronasDoGrupo(idGrupo,idUsuario);
+			request.setAttribute("Caronas", caronas);
+			request.setAttribute("idUsuario", request.getParameter("idUsuario"));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("grupo/AlterarGrupo.jsp").forward(request,response);
+
+		request.getRequestDispatcher("carona/ListarCaronas.jsp").forward(request,response);
 	}
 
 	/**
@@ -56,19 +57,7 @@ public class AlterarGrupo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		TMGrupo novo = new TMGrupo();
-		long idUser = Long.parseLong(request.getParameter("id"));
-		String nome = request.getParameter("nome");
-		String descricao =request.getParameter("descricao");
-		int limite = Integer.parseInt(request.getParameter("limite"));
-		try {
-			novo.AlterarGrupo(idUser,nome,descricao,limite);
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		doGet(request,response);
+		doGet(request, response);
 	}
 
 }

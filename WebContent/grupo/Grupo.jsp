@@ -14,7 +14,7 @@
 	<%Grupo grupo = (Grupo) request.getAttribute("Grupo");%>
 	
 	<form  action="AlterarGrupo" method="get">
-		
+	<h2>Informações do grupo</h2>	
 		<input readOnly="true" hidden="true" name="idUsuario" value=<%=usuario.getId() %>>
 		<input readOnly="true" hidden="true" name="idGrupo" value=<%=grupo.getId() %>>
 		Nome: <input readOnly="true" type="text" name="nome" value='<%=grupo.getNome()%>'><br>
@@ -33,12 +33,22 @@
 		<input type="submit" value="Convidar">
 	</form>
 
-	<!-- 	Botão ainda não funciona Criar Servlet -->
+
+<h2> Caronas</h2>
+	<!-- 	Funcionando -->
 	<form action="CriarCarona" method="get">
 		<input hidden="true" name="idUsuario" value=<%=usuario.getId() %>>
 		<input hidden="true" name="idGrupo" value=<%=grupo.getId() %>>
 		<input type="submit" value="Criar Carona neste Grupo">
 	</form>
+	
+	<!-- Em produção -->
+	<form action="ListarCaronas" method="get">
+		<input hidden="true" name="idUsuario" value=<%=usuario.getId() %>>
+		<input hidden="true" name="idGrupo" value=<%=grupo.getId() %>>
+		<input type="submit" value="VerCaronas">
+	</form>
+	
 	
 <!-- 	Botão ainda não funciona Criar Servlet -->
 	<form action="SairUsuario" method="post">

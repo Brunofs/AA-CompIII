@@ -24,7 +24,7 @@ public class UsuarioGrupoGateway {
 		this.id_usuario = id_usuario;
 		this.id_grupo = id_grupo;
 	}
-
+	
 	public void convidarUsuario(String emailConvidado){
 		
 		
