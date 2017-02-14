@@ -19,12 +19,6 @@
 		Limite de Avaliações negativas <input type="text" name="limite" value='<%=grupo.getLimite() %>'><br>
 		<input type="submit" value="Atualizar">
 	</form>
-	
-	<form action="ConvidarUsuario" method="post">
-		<input hidden="true" name="id" value=<%=grupo.getId() %>>
-		Email do convidado: <input type="text" name="email">		
-		<input type="submit" value="Convidar">
-	</form>
 
 </body>
 </html>

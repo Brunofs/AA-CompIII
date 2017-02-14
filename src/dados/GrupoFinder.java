@@ -39,6 +39,7 @@ public class GrupoFinder {
 	return list;
 	}
 	
+	
 	public static List<GrupoGateway> listarTodosPorUsuario(long idUser){
 		ArrayList<GrupoGateway> list = new ArrayList<GrupoGateway>();
 		

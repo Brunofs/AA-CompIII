@@ -1,5 +1,7 @@
 <%@page import="entidades.Grupo"%>
+<%@page import="entidades.Usuario"%>
 <%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,14 +18,13 @@
 				<td>Deletar</td>
 			</tr>
 <% 
-		List<Grupo> listaGrupos = (List<Grupo>) request.getAttribute("Grupos");
-	
+		List<Grupo> listaGrupos = (List<Grupo>) request.getAttribute("Grupo");
+		Usuario user = (Usuario)request.getAttribute("Usuario") ;	
 		for (Grupo grupoi : listaGrupos){
 	%>
 		<tr>
 			<td><%=grupoi.getNome() %></td>
-			<td><form action="AlterarGrupo" method="get"><input hidden="true" name="id" value='<%=grupoi.getId()%>'><input type="submit" value="Editar"></form></td>
-			<td><form action="DeletarGrupo" method="post"><input hidden="true" name="id" value='<%=grupoi.getId()%>'><input type="submit" value="Deletar"></form></td>
+			<td><form action="LerGrupo" method="get"><input hidden="true" name="id" value='<%=grupoi.getId()%>'><input hidden="true" name="idUser" value='<%=user.getId()%>'><input type="submit" value="Editar"></form></td>
 		</tr>
 		
 		<% } %>

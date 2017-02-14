@@ -10,23 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dados.UsuarioGateway;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
 import entidades.Grupo;
 import entidades.Usuario;
 
 /**
- * Servlet implementation class ListarGrupos
+ * Servlet implementation class LerGrupo
  */
-@WebServlet("/ListarGrupos")
-public class ListarGrupos extends HttpServlet {
+@WebServlet("/LerGrupo")
+public class LerGrupo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListarGrupos() {
+    public LerGrupo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,22 +34,22 @@ public class ListarGrupos extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		long id = Long.parseLong(request.getParameter("id"));
-		List<Grupo> grupo = new ArrayList<Grupo>();
+		long idGrupo = Long.parseLong(request.getParameter("id"));
+		long idUser  = Long.parseLong(request.getParameter("idUser"));
 		TMGrupo aux = new TMGrupo();
-		TMUsuario auxU = new TMUsuario();
+		TMUsuario user = new TMUsuario();
 		try {
-			grupo =  aux.RecuperaTodosGruposDoUsuario(id);
-			Usuario  user = auxU.RecuperaUsuario(id);
-			request.setAttribute("Grupo", grupo);
-			request.setAttribute("Usuario", user);
+			Grupo grupo = aux.RecuperaGrupo(idGrupo);
+			Usuario userD = user.RecuperaUsuario(idUser);
+			request.setAttribute("Grupo",grupo);
+			request.setAttribute("Usuario",userD);
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		request.getRequestDispatcher("grupo/ListarGrupos.jsp").forward(request,response);
+		request.getRequestDispatcher("grupo/Grupo.jsp").forward(request,response);
+		
 	}
 
 	/**
