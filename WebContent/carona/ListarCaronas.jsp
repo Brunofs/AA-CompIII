@@ -22,7 +22,7 @@
 	%>
 		<tr>
 			<td><%=caronai.getNumVagas() %></td>
-			<td><form action="LerGrupo" method="get"><input hidden="true" name="id" value='<%=caronai.getId()%>'><input hidden="true" name="idUser" value='<%=request.getAttribute("idUsuario")%>'><input type="submit" value="Editar"></form></td>
+			<td><form action="LerCarona" method="get"><input hidden="true" name="idCarona" value='<%=caronai.getId()%>'><input hidden="true" name="idUsuario" value='<%=request.getAttribute("idUsuario")%>'><input type="submit" value="Editar"></form></td>
 		</tr>
 		
 		<% } %>

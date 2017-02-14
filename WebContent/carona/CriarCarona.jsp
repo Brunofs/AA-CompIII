@@ -17,9 +17,11 @@
 			dia: <input  type="text" name="dia" ><br>
 			horario de saida: <input type="text" name="horarioSaida"><br>
 			Numero de vagas :<input type="text" name="numVagas"><br>
-			Logradouro Origem :<input type="text" name="logOrigem"><br>
-			Logradouro Destino :<input type="text" name="logDestino"><br>
+			Origem :<input type="text" name="logOrigem"><br>
+			Destino :<input type="text" name="logDestino"><br>
 			<input type="submit" value="Atualizar">
+			<select name="tipoDocumento" id="tipoDocumento" onchange="atualizaOM()" emptyOption="true" cssClass="css_combobox" list="tipoDocumentoSet" listKey="idTipoDocumento" listValue="descricao" />
+			
 		</form>
 </body>
 </html>

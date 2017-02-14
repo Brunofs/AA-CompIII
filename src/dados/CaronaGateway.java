@@ -18,7 +18,6 @@ public class CaronaGateway {
 	
 	public void salvarCarona()  throws ConexaoException, SQLException, ClassNotFoundException {
 		Conexao.initConnection();
-		System.out.println("VAi porra!");
 		String sql = "INSERT INTO public.carona(grupo_id,veiculo_id,data,horariosaida,num_vagas,logOrigem_id,logDestino_id) VALUES(?,?,?,?,?,?,?);";
 			PreparedStatement psmt = Conexao.prepare(sql);
 			psmt.setLong(1, this.getIdGrupo());
@@ -29,7 +28,6 @@ public class CaronaGateway {
 			psmt.setLong(6, this.getLogOrigem());
 			psmt.setLong(7, this.getLogDestino());
 			int linhasAfetadas = psmt.executeUpdate();
-			System.out.println("DEU MERD NO EXEC DSAASSADD");
 			if (linhasAfetadas == 0) {
 				throw new ConexaoException();
 			}
@@ -50,6 +48,10 @@ public class CaronaGateway {
 		this.logDestino = logDestino;
 	}
 	
+	public CaronaGateway() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public long getIdCarona() {
 		return idCarona;
 	}

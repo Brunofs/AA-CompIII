@@ -40,5 +40,37 @@ public class CaronaFinder {
 		
 	return list;
 	}
+	
+	public static CaronaGateway recuperaPorId(long idCarona){
+		CaronaGateway car = new CaronaGateway();
+		
+		try {
+			Conexao.initConnection();
+			String sql = "SELECT * FROM carona where id="+idCarona+";";
+			Statement psmt = Conexao.prepare();
+			ResultSet result = psmt.executeQuery(sql);
+			
+			if(result.next()) {
+				long grupo_id = result.getLong("grupo_id");
+				long veiculo_id = result.getLong("veiculo_id");
+				long logorigem_id = result.getLong("logorigem_id");
+				long logdestino_id = result.getLong("logdestino_id");
+				String data = result.getString("data");
+				String horariosaida = result.getString("horariosaida");
+				Integer num_vagas = result.getInt("num_vagas");
+				
+				CaronaGateway carona =new CaronaGateway(grupo_id,veiculo_id,data,horariosaida,num_vagas,logorigem_id,logdestino_id);
+				carona.setIdCarona(result.getLong("id"));
+				car=carona;
+			}
+			
+			Conexao.closeConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return car;
+	}
+
 
 }

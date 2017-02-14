@@ -7,7 +7,10 @@ import java.util.List;
 
 import dados.CaronaFinder;
 import dados.CaronaGateway;
+import dados.GrupoFinder;
+import dados.GrupoGateway;
 import entidades.Carona;
+import entidades.Grupo;
 import excecoes.ConexaoException;
 
 public class TMCarona {
@@ -33,5 +36,15 @@ public class TMCarona {
 		
 		return (List<Carona>) caronas;
 	}
+	
+	public static Carona RecuperaCarona(long caronaId) throws Exception{
+		if(caronaId <0){
+			throw new IllegalArgumentException("id");
+		}
+		
+		CaronaGateway c = CaronaFinder.recuperaPorId(caronaId);
+		Carona cRet =  new Carona(c.getIdCarona(),c.getData(),c.getHorarioSaida(),c.getNumVagas(),c.getIdVeiculo(),c.getIdGrupo(),c.getLogOrigem(),c.getLogDestino());
+		return cRet;
+}
 
 }

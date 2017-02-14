@@ -66,12 +66,9 @@ public class TMVeiculo {
 	public static List<Veiculo> RecuperaTodosVeiculosDoUsuario(long userId) throws Exception{
 		Collection<VeiculoGateway> veiculoGateway = VeiculoFinder.listarTodosDesseUsuario(userId);
 		ArrayList<Veiculo> vei = new ArrayList<Veiculo>();
-		System.out.println("PAss "+ veiculoGateway.size());
 		if(veiculoGateway.size()<=0){
 			throw new usuarioNaoPossuiVeiculos();
 		}
-		
-		
 		for(VeiculoGateway v : veiculoGateway){
 			Veiculo veiculo = new Veiculo(v.getId(),v.getModelo(), v.getPlaca(), v.getCor(),v.getUsurio_id());
 			vei.add(veiculo);
