@@ -18,7 +18,6 @@ public class TMCarona {
 
 	public void CriarCarona(long idUsuario, long idGrupo, long idVeiculo, String data, String horarioSaida, int numVagas,	long logOrigem, long logDestino) throws ClassNotFoundException, ConexaoException, SQLException {
 		
-		
 		CaronaGateway caronaGate = new CaronaGateway(idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino);
 		caronaGate.salvarCarona();
 	}

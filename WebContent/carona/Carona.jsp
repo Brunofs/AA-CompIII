@@ -21,7 +21,13 @@
 			Destino :<input type="text" name="logDestino" value='<%=carona.getLogDestino()%>'><br>
 			<input type="submit" value="Atualizar">
 			
-		</form>
-
+	</form>
+	<form action="ConvidarUsuario" method="post">
+		<input hidden="true" name="idUser" value=<%=carona.get%>>
+		Email do convidado: <input type="text" name="email">		
+		<input type="submit" value="Reservar Carona">
+	</form>
+	
+	
 </body>
 </html>
