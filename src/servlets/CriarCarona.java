@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.Session;
 
+import dados.VeiculoFinder;
+import dados.VeiculoGateway;
 import dominio.TMCarona;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
+import dominio.TMVeiculo;
 import entidades.Grupo;
 import entidades.Usuario;
 import excecoes.ConexaoException;
@@ -37,12 +41,18 @@ public class CriarCarona extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		long idUser = Long.parseLong(request.getParameter("idUsuario"));
 			request.setAttribute("Usuario", request.getParameter("idUsuario"));
 			request.setAttribute("Grupo", request.getParameter("idGrupo"));
-		
-		request.getRequestDispatcher("carona/CriarCarona.jsp").forward(request,response);
-	}
+			TMVeiculo veiculos = new TMVeiculo();
+			try {
+				veiculos.RecuperaTodosVeiculosDoUsuario(idUser);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("carona/CriarCarona.jsp").forward(request,response);
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
