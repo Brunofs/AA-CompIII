@@ -40,6 +40,33 @@ public class UsuarioFinder {
 	return list;
 	}
 	
+	public static List<UsuarioGateway> recuperaUsuariosPorCarona(long idCarona){
+		ArrayList<UsuarioGateway> list = new ArrayList<UsuarioGateway>();
+		
+		try {
+			Conexao.initConnection();
+			String sql = "SELECT * FROM parada p join usuario u on p.carona_id = "+ idCarona +" and p.usuario_id = id;";
+			Statement psmt = Conexao.prepare();
+			ResultSet result = psmt.executeQuery(sql);
+			
+			
+			while(result.next()) {
+				String nome = result.getString("nome");
+				String email = result.getString("email");
+				String telefone = result.getString("telefone");
+				UsuarioGateway user =new UsuarioGateway(nome,email,telefone);
+				user.setId(result.getLong("id"));
+				list.add(user);
+			}
+			
+			Conexao.closeConnection();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	public static UsuarioGateway recuperaUsuarioPorEmail(String emaill){
 		UsuarioGateway userR = new UsuarioGateway();
