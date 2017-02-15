@@ -66,5 +66,22 @@ public class TMCarona {
 		}
 		
 	}
+	}
+	
+	public static List<Logradouro> RecuperaLogradouros(long idUsuario) throws Exception{
+		if(idUsuario <0){
+			throw new IllegalArgumentException("id");
+		}
+		
+		Collection<LogradouroGateway> logradrouros = LogradouroFinder.recuperaLogarouroPorUser(idUsuario);
+		ArrayList<Logradouro> l = new ArrayList<Logradouro>();
+		
+		for(LogradouroGateway logradrouro : logradrouros){
+			Logradouro log = new Logradouro(logradrouro.getId(),logradrouro.getCep(),logradrouro.getEndereco(),logradrouro.getDistrito(),logradrouro.getCidade(),logradrouro.getEstado(), logradrouro.getNumero());
+			l.add(log);
+		}
+		
+		return l;
+	}
 
 }

@@ -67,10 +67,10 @@ public class TMVeiculo {
 		Collection<VeiculoGateway> veiculoGateway = VeiculoFinder.listarTodosDesseUsuario(userId);
 		ArrayList<Veiculo> vei = new ArrayList<Veiculo>();
 
-		if(veiculoGateway.size()<=0){
+		if(veiculoGateway.size() <=0 ){
 			throw new usuarioNaoPossuiVeiculos();
 		}
-		
+
 		for(VeiculoGateway v : veiculoGateway){
 			Veiculo veiculo = new Veiculo(v.getId(),v.getModelo(), v.getPlaca(), v.getCor(),v.getUsurio_id());
 			vei.add(veiculo);

@@ -40,20 +40,19 @@ public class CriarCarona extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
-			request.setAttribute("Usuario", request.getParameter("idUsuario"));
-			request.setAttribute("Grupo", request.getParameter("idGrupo"));
-			try {
-				List<Veiculo> listVeiculos=TMVeiculo.RecuperaTodosVeiculosDoUsuario(idUsuario);
-				if(listVeiculos.isEmpty()){
-					request.getRequestDispatcher("erro/erro666.jsp").forward(request,response);	
-				}else{
-				request.getRequestDispatcher("carona/CriarCarona.jsp").forward(request,response);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		TMCarona carona = new TMCarona();
+		TMVeiculo veiculo = new TMVeiculo();
+		long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
+		request.setAttribute("Usuario", request.getParameter("idUsuario"));
+		request.setAttribute("Grupo", request.getParameter("idGrupo"));
+		try {
+			request.setAttribute("Veiculos", veiculo.RecuperaTodosVeiculosDoUsuario(idUsuario));
+			request.setAttribute("Logradouros", carona.RecuperaLogradouros(idUsuario));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		request.getRequestDispatcher("carona/CriarCarona.jsp").forward(request,response);
 	}
 
 	/**
