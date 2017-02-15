@@ -9,8 +9,11 @@ import dados.CaronaFinder;
 import dados.CaronaGateway;
 import dados.GrupoFinder;
 import dados.GrupoGateway;
+import dados.LogradouroFinder;
+import dados.LogradouroGateway;
 import entidades.Carona;
 import entidades.Grupo;
+import entidades.Logradouro;
 import excecoes.ConexaoException;
 
 public class TMCarona {
@@ -44,6 +47,22 @@ public class TMCarona {
 		CaronaGateway c = CaronaFinder.recuperaPorId(caronaId);
 		Carona cRet =  new Carona(c.getIdCarona(),c.getData(),c.getHorarioSaida(),c.getNumVagas(),c.getIdVeiculo(),c.getIdGrupo(),c.getLogOrigem(),c.getLogDestino());
 		return cRet;
-}
+	}
+	
+	public static List<Logradouro> RecuperaLogradouros(long idUsuario) throws Exception{
+		if(idUsuario <0){
+			throw new IllegalArgumentException("id");
+		}
+		
+		Collection<LogradouroGateway> logradrouros = LogradouroFinder.recuperaLogarouroPorUser(idUsuario);
+		ArrayList<Logradouro> l = new ArrayList<Logradouro>();
+		
+		for(LogradouroGateway logradrouro : logradrouros){
+			Logradouro log = new Logradouro(logradrouro.getCep(),logradrouro.getEndereco(),logradrouro.getDistrito(),logradrouro.getCidade(),logradrouro.getEstado(), logradrouro.getNumero());
+			l.add(log);
+		}
+		
+		return l;
+	}
 
 }

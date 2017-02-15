@@ -37,9 +37,16 @@ public class CriarCarona extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-			request.setAttribute("Usuario", request.getParameter("idUsuario"));
-			request.setAttribute("Grupo", request.getParameter("idGrupo"));
+		TMCarona carona = new TMCarona();
+		long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
+		request.setAttribute("Usuario", request.getParameter("idUsuario"));
+		request.setAttribute("Grupo", request.getParameter("idGrupo"));
+		try {
+			request.setAttribute("Logradouros", carona.RecuperaLogradouros(idUsuario));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		
 		request.getRequestDispatcher("carona/CriarCarona.jsp").forward(request,response);
 	}
