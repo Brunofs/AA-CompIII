@@ -70,7 +70,6 @@ public class TMCarona {
 		}
 		
 	}
-	}
 	
 	public static List<Logradouro> RecuperaLogradouros(long idUsuario) throws Exception{
 		if(idUsuario <0){
