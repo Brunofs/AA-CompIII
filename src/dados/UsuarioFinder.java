@@ -42,7 +42,7 @@ public class UsuarioFinder {
 	
 	
 	public static UsuarioGateway recuperaUsuarioPorEmail(String emaill){
-		UsuarioGateway userR = new UsuarioGateway();
+		UsuarioGateway userR = null;
 		
 		try {
 			Conexao.initConnection();

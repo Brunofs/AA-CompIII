@@ -10,9 +10,11 @@ import dados.CaronaGateway;
 import dados.GrupoFinder;
 import dados.GrupoGateway;
 import dados.LogradouroFinder;
+import dados.LogradouroGateway;
 import dados.VeiculoGateway;
 import entidades.Carona;
 import entidades.Grupo;
+import entidades.Logradouro;
 import entidades.Veiculo;
 import excecoes.ConexaoException;
 
@@ -66,7 +68,7 @@ public class TMCarona {
 		}
 		
 	}
-	}
+	
 	
 	public static List<Logradouro> RecuperaLogradouros(long idUsuario) throws Exception{
 		if(idUsuario <0){

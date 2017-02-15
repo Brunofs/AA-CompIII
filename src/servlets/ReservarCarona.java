@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dominio.TMParada;
 import excecoes.ConexaoException;
+import excecoes.usuarioJaCadastradoaCarona;
 
 /**
  * Servlet implementation class ReservarCarona
@@ -53,6 +54,9 @@ public class ReservarCarona extends HttpServlet {
 		try {
 			par.CriarParada(cep, endereco, complemento,bairro,cidade,estado, emailConvidado,idCarona);
 		} catch (ClassNotFoundException | ConexaoException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (usuarioJaCadastradoaCarona e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
