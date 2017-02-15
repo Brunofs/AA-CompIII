@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dominio.TMParada;
 import excecoes.ConexaoException;
+import excecoes.emailInvalido;
 import excecoes.usuarioJaCadastradoaCarona;
 
 /**
@@ -57,6 +58,9 @@ public class ReservarCarona extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (usuarioJaCadastradoaCarona e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (emailInvalido e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
