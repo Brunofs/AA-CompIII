@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dominio.TMParada;
+
 /**
  * Servlet implementation class ReservarCarona
  */
@@ -37,12 +39,16 @@ public class ReservarCarona extends HttpServlet {
 		
 		String emailConvidado = request.getParameter("emailConvidado");
 		long idVeiculo = Long.parseLong(request.getParameter("idVeiculo"));
-		String CEP =  request.getParameter("cep");
+		long idVeiculo = Long.parseLong(request.getParameter("idVeiculo"));
+		String cep =  request.getParameter("cep");
 		String endereco =  request.getParameter("endereco");
 		String complemento =  request.getParameter("complemento");
 		String bairro =  request.getParameter("bairro");
 		String cidade =  request.getParameter("cidade");
 		String estado =  request.getParameter("estado");
+		
+		TMParada par = new TMParada();
+		par.CriarParada(cep, endereco, complemento,bairro,cidade,estado, emailConvidado, );
 		
 		
 	}

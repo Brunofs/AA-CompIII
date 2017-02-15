@@ -23,7 +23,7 @@ public class TMParada {
 		List<ParadaGateway> paradas = ParadaFinder.listarTodosPorCarona(idCarona);
 		
 		if(paradas.size()-2>=carR.getNumVagas()){
-			
+			System.out.println("já esta lotado");
 		}
 		
 		LogradouroGateway logR = LogradouroFinder.recuperaLogradouro(cep, numero);
