@@ -15,7 +15,6 @@ import dados.VeiculoFinder;
 import dados.VeiculoGateway;
 import entidades.Veiculo;
 import excecoes.ConexaoException;
-import excecoes.usuarioNaoPossuiVeiculos;
 
 public class TMVeiculo {
 	
@@ -66,9 +65,13 @@ public class TMVeiculo {
 	public static List<Veiculo> RecuperaTodosVeiculosDoUsuario(long userId) throws Exception{
 		Collection<VeiculoGateway> veiculoGateway = VeiculoFinder.listarTodosDesseUsuario(userId);
 		ArrayList<Veiculo> vei = new ArrayList<Veiculo>();
+<<<<<<< master
 		if(veiculoGateway.size()<=0){
 			throw new usuarioNaoPossuiVeiculos();
 		}
+=======
+		
+>>>>>>> 3d29f47 Restrição de criação de carona só usuario que é motorista(tem carro)
 		for(VeiculoGateway v : veiculoGateway){
 			Veiculo veiculo = new Veiculo(v.getId(),v.getModelo(), v.getPlaca(), v.getCor(),v.getUsurio_id());
 			vei.add(veiculo);

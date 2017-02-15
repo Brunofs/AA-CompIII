@@ -37,7 +37,5 @@
 		Estado: <input type="text" name="cidade" id = "estado"><br>	
 		<input type="submit" value="Convidar">
 	</form>
-		
-
 </body>
 </html>
