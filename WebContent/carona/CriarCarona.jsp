@@ -26,7 +26,6 @@
 			Origem : <select name="logOrigem"><% for (Logradouro log : logs){ %> <option value="<%=log.getId()%>"><%=log.getCep()%></option><%}%></select><br>
 			Destino :<select name="logDestino"><% for (Logradouro log : logs){ %> <option value="<%=log.getId()%>"><%=log.getCep()%></option><%}%></select><br>
 			<input type="submit" value="Criar">
-			
 		</form>
 </body>
 </html>

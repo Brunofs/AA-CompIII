@@ -12,9 +12,15 @@ import dados.GrupoGateway;
 import dados.LogradouroFinder;
 import dados.LogradouroGateway;
 import dados.VeiculoGateway;
+import dados.GrupoGateway;
+import dados.LogradouroFinder;
+import dados.LogradouroGateway;
+import dados.UsuarioFinder;
+import dados.UsuarioGateway;
 import entidades.Carona;
 import entidades.Grupo;
 import entidades.Logradouro;
+import entidades.Usuario;
 import entidades.Veiculo;
 import excecoes.ConexaoException;
 
@@ -69,7 +75,6 @@ public class TMCarona {
 		
 	}
 	
-	
 	public static List<Logradouro> RecuperaLogradouros(long idUsuario) throws Exception{
 		if(idUsuario <0){
 			throw new IllegalArgumentException("id");
@@ -84,6 +89,22 @@ public class TMCarona {
 		}
 		
 		return l;
+	}
+	
+	public static List<Usuario> RecuperaUserPorCarona(long idCarona) throws Exception{
+		if(idCarona <0){
+			throw new IllegalArgumentException("id");
+		}
+		
+		Collection<UsuarioGateway> uList = UsuarioFinder.recuperaUsuariosPorCarona(idCarona);
+		ArrayList<Usuario> us = new ArrayList<Usuario>();
+		
+		for(UsuarioGateway user : uList){
+			Usuario u = new Usuario(user.getId(),user.getNome(),user.getEmail(),user.getTelefone());
+			us.add(u);
+		}
+		
+		return us;
 	}
 
 }
