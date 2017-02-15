@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import dominio.TMUsuario;
 import dominio.TMVeiculo;
 import entidades.Grupo;
 import entidades.Usuario;
+import entidades.Veiculo;
 import excecoes.ConexaoException;
 import javafx.scene.chart.PieChart.Data;
 
@@ -50,7 +52,6 @@ public class CriarCarona extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		
 		request.getRequestDispatcher("carona/CriarCarona.jsp").forward(request,response);
 	}
 

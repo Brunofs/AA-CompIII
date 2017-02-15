@@ -24,6 +24,7 @@
 			<td><%=caronai.getNumVagas() %></td>
 			<td><form action="LerCarona" method="get"><input hidden="true" name="idCarona" value='<%=caronai.getId()%>'><input hidden="true" name="idUsuario" value='<%=request.getAttribute("idUsuario")%>'><input type="submit" value="Editar"></form></td>
 			<td><form action="AvaliarCarona" method="get"><input hidden="true" name="idCarona" value='<%=caronai.getId()%>'><input type="submit" value="Avaliar"></form></td>
+			<td><form action="FinalizarCarona" method="post"><input hidden="true" name="idCarona" value='<%=caronai.getId()%>'><input hidden="true" name="idUsuario" value='<%=request.getAttribute("idUsuario")%>'><input type="submit" value="Finalizar Carona"></form></td>
 		</tr>
 		
 		<% } %>

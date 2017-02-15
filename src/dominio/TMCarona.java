@@ -17,6 +17,7 @@ import entidades.Carona;
 import entidades.Grupo;
 import entidades.Logradouro;
 import entidades.Usuario;
+import entidades.Veiculo;
 import excecoes.ConexaoException;
 
 public class TMCarona {
@@ -50,6 +51,25 @@ public class TMCarona {
 		CaronaGateway c = CaronaFinder.recuperaPorId(caronaId);
 		Carona cRet =  new Carona(c.getIdCarona(),c.getData(),c.getHorarioSaida(),c.getNumVagas(),c.getIdVeiculo(),c.getIdGrupo(),c.getLogOrigem(),c.getLogDestino());
 		return cRet;
+	}
+	
+	public static void FinalizarCarona(long idCarona, long idUsuario){
+		try {
+			List<Veiculo> listVeiculos=TMVeiculo.RecuperaTodosVeiculosDoUsuario(idUsuario);
+			Carona carona=RecuperaCarona(idCarona);
+			for(Veiculo veiculoi: listVeiculos){
+				if(veiculoi.getId()== carona.getIdVeiculo()){
+					CaronaGateway novo= CaronaFinder.recuperaPorId(idCarona);
+					novo.FinalizarCarona();
+				}
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	}
 	
 	public static List<Logradouro> RecuperaLogradouros(long idUsuario) throws Exception{

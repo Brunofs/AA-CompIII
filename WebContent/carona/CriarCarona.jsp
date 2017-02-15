@@ -23,9 +23,15 @@
 			dia: <input  type="text" name="dia" ><br>
 			horario de saida: <input type="text" name="horarioSaida"><br>
 			Numero de vagas :<input type="text" name="numVagas"><br>
+<<<<<<< HEAD
+			Origem :<input type="text" name="logOrigem"><br>
+			Destino :<input type="text" name="logDestino"><br>
+			<input type="submit" value="Criar">
+=======
 			Origem : <select name="logOrigem"><% for (Logradouro log : logs){ %> <option value="<%=log.getId()%>"><%=log.getCep()%></option><%}%></select><br>
 			Destino :<select name="logDestino"><% for (Logradouro log : logs){ %> <option value="<%=log.getId()%>"><%=log.getCep()%></option><%}%></select><br>
 			<input type="submit" value="Atualizar">
+>>>>>>> refs/remotes/origin/master
 			<select name="tipoDocumento" id="tipoDocumento" onchange="atualizaOM()" emptyOption="true" cssClass="css_combobox" list="tipoDocumentoSet" listKey="idTipoDocumento" listValue="descricao" />
 			
 		</form>

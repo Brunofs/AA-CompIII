@@ -36,6 +36,26 @@ public class CaronaGateway {
 			Conexao.closeConnection();
 	}
 	
+		public void FinalizarCarona()  throws ConexaoException, SQLException, ClassNotFoundException {
+			Conexao.initConnection();
+			System.out.println(this.getIdCarona());
+			String sql = "UPDATE carona SET situacao = "+0+" WHERE ID = " + this.getIdCarona() +";";
+			
+			PreparedStatement psmt = Conexao.prepare(sql);
+			
+			int linhasAfetadas = psmt.executeUpdate();
+			
+			if (linhasAfetadas == 0) {
+				Conexao.rollBack();
+				Conexao.closeConnection();
+				throw new ConexaoException();
+			}else{
+				Conexao.commit();
+				Conexao.closeConnection();
+			}
+		}
+	
+	
 	public CaronaGateway( long idGrupo, long veiculo, String data, String horarioSaida, int numVagas,
 			long logOrigem, long logDestino) {
 		super();

@@ -22,7 +22,8 @@ public class VeiculoFinder {
 				String modelo = result.getString("modelo");
 				String placa = result.getString("placa");
 				String cor = result.getString("cor");
-				VeiculoGateway veiculo =new VeiculoGateway(modelo,placa,cor);
+				long usuario_id =result.getLong("usuario_id");
+				VeiculoGateway veiculo =new VeiculoGateway(modelo,placa,cor,usuario_id);
 				veiculo.setId(result.getLong("id"));
 				veic=veiculo;
 			}
