@@ -7,12 +7,12 @@ import java.sql.Statement;
 public class LogradouroFinder {
 	
 
-	public static LogradouroGateway recuperaLogradouro(String cepBusca,int numeroBusca){
-		LogradouroGateway logradouroR = new LogradouroGateway();
+	public static LogradouroGateway recuperaLogradouro(String cepBusca,Integer numeroBusca){
+		LogradouroGateway logradouroR = null;
 		
 		try {
 			Conexao.initConnection();
-			String sql = "SELECT * FROM logradouro where cep='"+cepBusca+"', numero="+numeroBusca+";";
+			String sql = "SELECT * FROM logradouro where cep='"+cepBusca+"' and numero="+numeroBusca+";";
 			Statement psmt = Conexao.prepare();
 			ResultSet result = psmt.executeQuery(sql);
 			

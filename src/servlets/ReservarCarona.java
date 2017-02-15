@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dominio.TMParada;
+import excecoes.ConexaoException;
 
 /**
  * Servlet implementation class ReservarCarona
@@ -38,18 +41,21 @@ public class ReservarCarona extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String emailConvidado = request.getParameter("emailConvidado");
-		long idVeiculo = Long.parseLong(request.getParameter("idVeiculo"));
-		long idVeiculo = Long.parseLong(request.getParameter("idVeiculo"));
+		long idCarona= Long.parseLong(request.getParameter("idCarona"));
 		String cep =  request.getParameter("cep");
 		String endereco =  request.getParameter("endereco");
-		String complemento =  request.getParameter("complemento");
+		Integer complemento = Integer.parseInt(request.getParameter("complemento"));
 		String bairro =  request.getParameter("bairro");
 		String cidade =  request.getParameter("cidade");
 		String estado =  request.getParameter("estado");
 		
 		TMParada par = new TMParada();
-		par.CriarParada(cep, endereco, complemento,bairro,cidade,estado, emailConvidado, );
-		
+		try {
+			par.CriarParada(cep, endereco, complemento,bairro,cidade,estado, emailConvidado,idCarona);
+		} catch (ClassNotFoundException | ConexaoException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -26,6 +26,7 @@ public class LogradouroGateway {
 		psmt.setString(3, this.getCidade());
 		psmt.setString(4, this.getDistrito());
 		psmt.setString(5, this.getEndereco());
+		System.out.println("Sysss numero"+ this.getNumero());
 		psmt.setInt(6, this.getNumero());
 		
 		int linhasAfetadas = psmt.executeUpdate();

@@ -9,6 +9,7 @@ import dados.CaronaFinder;
 import dados.CaronaGateway;
 import dados.GrupoFinder;
 import dados.GrupoGateway;
+import dados.LogradouroFinder;
 import entidades.Carona;
 import entidades.Grupo;
 import excecoes.ConexaoException;
@@ -17,6 +18,7 @@ public class TMCarona {
 	
 
 	public void CriarCarona(long idUsuario, long idGrupo, long idVeiculo, String data, String horarioSaida, int numVagas,	long logOrigem, long logDestino) throws ClassNotFoundException, ConexaoException, SQLException {
+		
 		
 		CaronaGateway caronaGate = new CaronaGateway(idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino);
 		caronaGate.salvarCarona();
@@ -40,7 +42,6 @@ public class TMCarona {
 		if(caronaId <0){
 			throw new IllegalArgumentException("id");
 		}
-		
 		CaronaGateway c = CaronaFinder.recuperaPorId(caronaId);
 		Carona cRet =  new Carona(c.getIdCarona(),c.getData(),c.getHorarioSaida(),c.getNumVagas(),c.getIdVeiculo(),c.getIdGrupo(),c.getLogOrigem(),c.getLogDestino());
 		return cRet;

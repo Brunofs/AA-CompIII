@@ -27,8 +27,8 @@
 		
 		<h2> Reservar Carona</h2>
 	<form action="ReservarCarona" method="post">
-		<input hidden="true" name="id" value=<%=carona.getId() %>>
-		Email do convidado: <input type="text" name="email"><br>	
+		<input hidden="true" name="idCarona" value=<%=carona.getId() %>>
+		Email do convidado: <input type="text" name="emailConvidado"><br>	
 		CEP: <input type="text" name="cep" id="cep"><br>
 		Endereço: <input type="text" name="endereco" id="rua"><br>
 		Complemento: <input type="text" name="complemento"><br>
