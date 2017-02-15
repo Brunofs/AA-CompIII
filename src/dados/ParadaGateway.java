@@ -14,7 +14,7 @@ public class ParadaGateway {
 	
 	public void salvarParada()  throws ConexaoException, SQLException, ClassNotFoundException {
 		Conexao.initConnection();
-		String sql = "INSERT INTO  (usuario_id,carona_id,logradouro_id) VALUES(?,?,?);";
+		String sql = "INSERT INTO parada (usuario_id,carona_id,logradouro_id) VALUES(?,?,?);";
 		PreparedStatement psmt = Conexao.prepare(sql);
 		psmt.setLong(1, this.getIdUsuario());
 		psmt.setLong(2, this.getIdCarona());

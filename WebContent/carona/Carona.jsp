@@ -22,13 +22,17 @@
 			Origem :<input type="text" name="logOrigem" value='<%=carona.getLogOrigem()%>'><br>
 			Destino :<input type="text" name="logDestino" value='<%=carona.getLogDestino()%>'><br>
 			<input type="submit" value="Atualizar">
-			
+		</form>
+		
+		<form action="SolicitarInformacoes" method="get">
+			<input hidden="true" type="text" name="idVeiculo" value='<%=carona.getIdVeiculo()%>' ><br>
+			<input type="submit" value="Solicitar Informações do Motorista">
 		</form>
 		
 		<h2> Reservar Carona</h2>
 	<form action="ReservarCarona" method="post">
-		<input hidden="true" name="id" value=<%=carona.getId() %>>
-		Email do convidado: <input type="text" name="email"><br>	
+		<input hidden="true" name="idCarona" value=<%=carona.getId() %>>
+		Email do convidado: <input type="text" name="emailConvidado"><br>	
 		CEP: <input type="text" name="cep" id="cep"><br>
 		Endereço: <input type="text" name="endereco" id="rua"><br>
 		Complemento: <input type="text" name="complemento"><br>

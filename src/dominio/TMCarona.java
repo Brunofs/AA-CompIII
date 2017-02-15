@@ -21,6 +21,7 @@ public class TMCarona {
 
 	public void CriarCarona(long idUsuario, long idGrupo, long idVeiculo, String data, String horarioSaida, int numVagas,	long logOrigem, long logDestino) throws ClassNotFoundException, ConexaoException, SQLException {
 		
+		
 		CaronaGateway caronaGate = new CaronaGateway(idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino);
 		caronaGate.salvarCarona();
 	}
@@ -43,7 +44,6 @@ public class TMCarona {
 		if(caronaId <0){
 			throw new IllegalArgumentException("id");
 		}
-		
 		CaronaGateway c = CaronaFinder.recuperaPorId(caronaId);
 		Carona cRet =  new Carona(c.getIdCarona(),c.getData(),c.getHorarioSaida(),c.getNumVagas(),c.getIdVeiculo(),c.getIdGrupo(),c.getLogOrigem(),c.getLogDestino());
 		return cRet;
@@ -58,7 +58,7 @@ public class TMCarona {
 		ArrayList<Logradouro> l = new ArrayList<Logradouro>();
 		
 		for(LogradouroGateway logradrouro : logradrouros){
-			Logradouro log = new Logradouro(logradrouro.getCep(),logradrouro.getEndereco(),logradrouro.getDistrito(),logradrouro.getCidade(),logradrouro.getEstado(), logradrouro.getNumero());
+			Logradouro log = new Logradouro(logradrouro.getId(),logradrouro.getCep(),logradrouro.getEndereco(),logradrouro.getDistrito(),logradrouro.getCidade(),logradrouro.getEstado(), logradrouro.getNumero());
 			l.add(log);
 		}
 		

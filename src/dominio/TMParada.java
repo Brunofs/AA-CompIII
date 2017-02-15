@@ -15,9 +15,8 @@ import excecoes.ConexaoException;
 
 public class TMParada {
 	
-	public static void CriarParada(String cep, String estado, String cidade, String distrito, String endereco,
-			Integer numero,String email, long idCarona) throws ClassNotFoundException, ConexaoException, SQLException{
-		
+	public static void CriarParada(String cep, String endereco, Integer complemento, String bairro, String cidade,
+			String estado,String email, long idCarona) throws ClassNotFoundException, ConexaoException, SQLException{
 		UsuarioGateway userR = UsuarioFinder.recuperaUsuarioPorEmail(email);
 		CaronaGateway carR = CaronaFinder.recuperaPorId(idCarona);
 		List<ParadaGateway> paradas = ParadaFinder.listarTodosPorCarona(idCarona);
@@ -26,11 +25,11 @@ public class TMParada {
 			System.out.println("já esta lotado");
 		}
 		
-		LogradouroGateway logR = LogradouroFinder.recuperaLogradouro(cep, numero);
-		if(logR==null){
-			logR = new LogradouroGateway(cep,estado,cidade,distrito,endereco,numero);
+		LogradouroGateway logR = LogradouroFinder.recuperaLogradouro(cep, complemento);
+		if(logR ==null){
+			logR = new LogradouroGateway(cep,estado,cidade,bairro,endereco,complemento);
+			logR.salvarLogradouro();
 		}
-		
 		ParadaGateway parada = new ParadaGateway(userR.getId(),logR.getId(),idCarona);
 		parada.salvarParada();
 	}

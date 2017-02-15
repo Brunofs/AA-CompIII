@@ -5,6 +5,7 @@ public class Logradouro {
 	String endereco;
 	String cidade;
 	String distrito;
+	long id;
 
 	public void setDistrito(String distrito) {
 		this.distrito = distrito;
@@ -12,7 +13,8 @@ public class Logradouro {
 	String estado;
 	Integer numero;
 	
-	public Logradouro(String cep, String endereco, String bairro, String cidade, String estado, Integer numero) {
+	public Logradouro(long id, String cep, String endereco, String bairro, String cidade, String estado, Integer numero) {
+		this.id = id;
 		this.cep = cep;
 		this.endereco = endereco;
 		this.cidade = cidade;
@@ -54,5 +56,15 @@ public class Logradouro {
 	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
+
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	
 	
 }

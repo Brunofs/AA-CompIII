@@ -1,5 +1,8 @@
 <%@page import="entidades.Grupo"%>
 <%@page import="entidades.Usuario"%>
+<%@page import="entidades.Logradouro"%>
+<%@page import="entidades.Veiculo"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,16 +12,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+		<% 
+			List<Logradouro> logs = (List<Logradouro>) request.getAttribute("Logradouros");
+			List<Veiculo> veiculos = (List<Veiculo>) request.getAttribute("Veiculos");
+		%>
 		<form  action="CriarCarona" method="post">
 			<input hidden="true" name="idUsuario" value='<%=request.getAttribute("Usuario")%>'>
 			<input hidden="true" name="idGrupo" value='<%=request.getAttribute("Grupo")%>'>
-			Veiculo: <input type="text" name="idVeiculo" ><br>
+			Veiculo: <select name="idVeiculo"><% for (Veiculo vei : veiculos){ %> <option value="<%=vei.getId()%>"><%=vei.getId()%></option><%}%></select><br>
 			dia: <input  type="text" name="dia" ><br>
 			horario de saida: <input type="text" name="horarioSaida"><br>
 			Numero de vagas :<input type="text" name="numVagas"><br>
-			Origem :<input type="text" name="logOrigem"><br>
-			Destino :<input type="text" name="logDestino"><br>
+			Origem : <select name="logOrigem"><% for (Logradouro log : logs){ %> <option value="<%=log.getId()%>"><%=log.getCep()%></option><%}%></select><br>
+			Destino :<select name="logDestino"><% for (Logradouro log : logs){ %> <option value="<%=log.getId()%>"><%=log.getCep()%></option><%}%></select><br>
 			<input type="submit" value="Atualizar">
 			<select name="tipoDocumento" id="tipoDocumento" onchange="atualizaOM()" emptyOption="true" cssClass="css_combobox" list="tipoDocumentoSet" listKey="idTipoDocumento" listValue="descricao" />
 			

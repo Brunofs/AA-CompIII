@@ -16,7 +16,7 @@ public class ParadaFinder {
 		
 		try {
 			Conexao.initConnection();
-			String sql = "Select carona_id from parada  carona_id="+carona_id+";";
+			String sql = "Select * from parada where carona_id="+carona_id+";";
 			Statement psmt = Conexao.prepare();
 			ResultSet result = psmt.executeQuery(sql);
 			

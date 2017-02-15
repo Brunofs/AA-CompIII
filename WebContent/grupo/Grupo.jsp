@@ -42,13 +42,13 @@
 		<input type="submit" value="Criar Carona neste Grupo">
 	</form>
 	
-	<!-- Em produção -->
+	<!-- Pronto -->
 	<form action="ListarCaronas" method="get">
 		<input hidden="true" name="idUsuario" value=<%=usuario.getId() %>>
 		<input hidden="true" name="idGrupo" value=<%=grupo.getId() %>>
 		<input type="submit" value="VerCaronas">
 	</form>
-	
+		
 	
 <!-- 	Botão ainda não funciona Criar Servlet -->
 	<form action="SairUsuario" method="post">

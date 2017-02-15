@@ -6,13 +6,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class LogradouroFinder {
-	
-	public static LogradouroGateway recuperaLogradouro(String cepBusca,int numeroBusca){
-		LogradouroGateway logradouroR = new LogradouroGateway();
+
+	public static LogradouroGateway recuperaLogradouro(String cepBusca,Integer numeroBusca){
+		LogradouroGateway logradouroR = null;
 		
 		try {
 			Conexao.initConnection();
-			String sql = "SELECT * FROM logradouro where cep='"+cepBusca+"', numero="+numeroBusca+";";
+			String sql = "SELECT * FROM logradouro where cep='"+cepBusca+"' and numero="+numeroBusca+";";
 			Statement psmt = Conexao.prepare();
 			ResultSet result = psmt.executeQuery(sql);
 			
@@ -76,7 +76,7 @@ public class LogradouroFinder {
 		
 		try {
 			Conexao.initConnection();
-			String sql = "SELECT * FROM parada p join logradouro l on p.usuario = " + id + ";";
+			String sql = "SELECT * FROM parada p join logradouro l on p.usuario_id = " + id + ";";
 			Statement psmt = Conexao.prepare();
 			ResultSet result = psmt.executeQuery(sql);
 			

@@ -13,6 +13,7 @@ import javax.websocket.Session;
 import dominio.TMCarona;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
+import dominio.TMVeiculo;
 import entidades.Grupo;
 import entidades.Usuario;
 import excecoes.ConexaoException;
@@ -38,10 +39,12 @@ public class CriarCarona extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		TMCarona carona = new TMCarona();
+		TMVeiculo veiculo = new TMVeiculo();
 		long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
 		request.setAttribute("Usuario", request.getParameter("idUsuario"));
 		request.setAttribute("Grupo", request.getParameter("idGrupo"));
 		try {
+			request.setAttribute("Veiculos", veiculo.RecuperaTodosVeiculosDoUsuario(idUsuario));
 			request.setAttribute("Logradouros", carona.RecuperaLogradouros(idUsuario));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

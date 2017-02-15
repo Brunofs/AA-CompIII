@@ -11,7 +11,6 @@ public class Carona {
 	long logOrigem;
 	long logDestino;
 	
-	
 	public Carona(long id, String data, String horarioSaida, int numVagas, long idVeiculo, long idGrupo,
 		long logOrigem, long logDestino) {
 		super();

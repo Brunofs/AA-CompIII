@@ -15,6 +15,7 @@ import dados.VeiculoFinder;
 import dados.VeiculoGateway;
 import entidades.Veiculo;
 import excecoes.ConexaoException;
+import excecoes.usuarioNaoPossuiVeiculos;
 
 public class TMVeiculo {
 	
@@ -66,7 +67,7 @@ public class TMVeiculo {
 		Collection<VeiculoGateway> veiculoGateway = VeiculoFinder.listarTodosDesseUsuario(userId);
 		ArrayList<Veiculo> vei = new ArrayList<Veiculo>();
 
-		if(veiculoGateway.size()<=0){
+		if(veiculoGateway.size() <=0 ){
 			throw new usuarioNaoPossuiVeiculos();
 		}
 
