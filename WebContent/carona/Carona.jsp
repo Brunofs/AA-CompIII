@@ -29,7 +29,7 @@
 			<input type="submit" value="Solicitar Informações do Motorista">
 		</form>
 		
-		<h2> Reservar Carona</h2>
+		<h2> Ação Restrita a Motoristas Reservar Carona</h2>
 	<form action="ReservarCarona" method="post">
 		<input hidden="true" name="idCarona" value=<%=carona.getId() %>>
 		Email do convidado: <input type="text" name="emailConvidado"><br>	

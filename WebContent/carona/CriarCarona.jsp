@@ -19,7 +19,7 @@
 			Numero de vagas :<input type="text" name="numVagas"><br>
 			Origem :<input type="text" name="logOrigem"><br>
 			Destino :<input type="text" name="logDestino"><br>
-			<input type="submit" value="Atualizar">
+			<input type="submit" value="Criar">
 			<select name="tipoDocumento" id="tipoDocumento" onchange="atualizaOM()" emptyOption="true" cssClass="css_combobox" list="tipoDocumentoSet" listKey="idTipoDocumento" listValue="descricao" />
 			
 		</form>
