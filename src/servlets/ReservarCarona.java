@@ -50,8 +50,8 @@ public class ReservarCarona extends HttpServlet {
 		String bairro =  request.getParameter("bairro");
 		String cidade =  request.getParameter("cidade");
 		String estado =  request.getParameter("estado");
-		
 		TMParada par = new TMParada();
+		
 		try {
 			par.CriarParada(cep, endereco, complemento,bairro,cidade,estado, emailConvidado,idCarona);
 		} catch (ClassNotFoundException | ConexaoException | SQLException e) {

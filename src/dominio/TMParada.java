@@ -27,7 +27,7 @@ public class TMParada {
 		List<ParadaGateway> paradas = ParadaFinder.listarTodosPorCarona(idCarona);
 		
 		if(paradas.size()-2>=carR.getNumVagas()){
-			System.out.println("já esta lotado");
+			System.out.println("jï¿½ esta lotado");
 		}
 		
 		LogradouroGateway logR = LogradouroFinder.recuperaLogradouro(cep, complemento);
@@ -44,5 +44,50 @@ public class TMParada {
 		ParadaGateway parada = new ParadaGateway(userR.getId(),logR.getId(),idCarona);
 		parada.salvarParada();
 	}
+	
+	public static void CriarParadaN(String cep, String endereco, Integer complemento, String bairro, String cidade,
+			String estado,long idUser, long idCarona) throws ClassNotFoundException, ConexaoException, SQLException, usuarioJaCadastradoaCarona, emailInvalido{
+		CaronaGateway carR = CaronaFinder.recuperaPorId(idCarona);
+		List<ParadaGateway> paradas = ParadaFinder.listarTodosPorCarona(idCarona);
+		
+		if(paradas.size()-2>=carR.getNumVagas()){
+			System.out.println("jï¿½ esta lotado");
+		}
+		
+		LogradouroGateway logR = LogradouroFinder.recuperaLogradouro(cep, complemento);
+		
+		if(logR ==null){
+			logR = new LogradouroGateway(cep,estado,cidade,bairro,endereco,complemento);
+			logR.salvarLogradouro();
+		}
 
+		ParadaGateway paradaExistente = ParadaFinder.retornaParadaJaCadastrada(idCarona, idUser, logR.getId());
+		if(paradaExistente !=null){
+			throw new usuarioJaCadastradoaCarona();
+		}
+
+		logR = new LogradouroGateway(cep,estado,cidade,bairro,endereco,complemento);
+		logR.salvarLogradouro();
+		
+		ParadaGateway parada = new ParadaGateway(idUser,logR.getId(),idCarona);
+		parada.salvarParada();
+	}
+	
+	public static void CriarParadaN(long idUser, long idCarona, long idLogra) throws ClassNotFoundException, ConexaoException, SQLException, usuarioJaCadastradoaCarona, emailInvalido{
+		CaronaGateway carR = CaronaFinder.recuperaPorId(idCarona);
+		List<ParadaGateway> paradas = ParadaFinder.listarTodosPorCarona(idCarona);
+		
+		if(paradas.size()-2>=carR.getNumVagas()){
+			System.out.println("jï¿½ esta lotado");
+		}
+		
+		
+		ParadaGateway paradaExistente = ParadaFinder.retornaParadaJaCadastrada(idCarona, idUser, idLogra);
+		if(paradaExistente !=null){
+			throw new usuarioJaCadastradoaCarona();
+		}
+		
+		ParadaGateway parada = new ParadaGateway(idUser,idLogra,idCarona);
+		parada.salvarParada();
+	}
 }

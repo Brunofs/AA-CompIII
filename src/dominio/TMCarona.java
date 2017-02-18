@@ -27,11 +27,13 @@ import excecoes.ConexaoException;
 public class TMCarona {
 	
 
-	public void CriarCarona(long idUsuario, long idGrupo, long idVeiculo, String data, String horarioSaida, int numVagas,	long logOrigem, long logDestino) throws ClassNotFoundException, ConexaoException, SQLException {
+	public long CriarCarona(long idUsuario, long idGrupo, long idVeiculo, String data, String horarioSaida, int numVagas,	long logOrigem, long logDestino) throws ClassNotFoundException, ConexaoException, SQLException {
 		
 		
 		CaronaGateway caronaGate = new CaronaGateway(idGrupo,idVeiculo,data,horarioSaida,numVagas,logOrigem,logDestino);
 		caronaGate.salvarCarona();
+		long id = caronaGate.getIdCarona();
+		return id;
 	}
 	
 	
