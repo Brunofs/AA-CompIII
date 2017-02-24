@@ -36,16 +36,7 @@ public class CriarGrupo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String idd = request.getParameter("id");
-		long id= Long.parseLong(idd);
-		Usuario aux;
-		try {
-			aux = TMUsuario.RecuperaUsuario(id);
-			request.setAttribute("Usuario",aux);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		request.setAttribute("idUsuario",request.getParameter("id"));
 		request.getRequestDispatcher("grupo/CriarGrupo.jsp").forward(request,response);
 	}
 
@@ -54,17 +45,20 @@ public class CriarGrupo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		TMGrupo novo = new TMGrupo();
-		long idUser = Long.parseLong(request.getParameter("id"));
+		long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
 		String nome = request.getParameter("nome");
 		String descricao =request.getParameter("descricao");
 		String regras =request.getParameter("regras");
 		int limite = Integer.parseInt(request.getParameter("limite"));
 		try {
-			novo.CriarGrupo(idUser,nome,descricao,regras,limite);
+			long idGrupo=novo.CriarGrupo(idUsuario,nome,descricao,regras,limite);
+			request.getRequestDispatcher("./LerGrupo?id="+idGrupo+"&idUser="+idUsuario).forward(request,response);
+
 		} catch (NumberFormatException | ClassNotFoundException | ConexaoException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 }

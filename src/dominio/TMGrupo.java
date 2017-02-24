@@ -42,7 +42,8 @@ public class TMGrupo {
 		return id;
 	}
 	
-	public static  void AlterarGrupo(long idGrupo,String nome,String descricao,int limite){
+	public static  GrupoGateway validaAlterarGrupo(long idGrupo,String nome,String descricao,int limite){
+		GrupoGateway grupo = null;
 		if(idGrupo <0){
 			throw new IllegalArgumentException("id");
 		}
@@ -59,19 +60,17 @@ public class TMGrupo {
 			throw new NumberFormatException("limite");
 		}
 		
-		GrupoGateway grupo = GrupoFinder.recuperaPorId(idGrupo);
+		grupo = GrupoFinder.recuperaPorId(idGrupo);
 		
 		grupo.setNome(nome);
 		grupo.setDescricao(descricao);
 		grupo.setLimAvalicao(limite);
-		try {
-			grupo.alterarGrupo();
-		} catch (ClassNotFoundException | ConexaoException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
+		
+		return grupo;	
 	}
+	
+	
 	
 	public static List<Grupo> RecuperaTodosGruposDoUsuario(long userId) throws Exception{
 		Collection<GrupoGateway> gruposGateway = GrupoFinder.listarTodosPorUsuario(userId);
@@ -85,12 +84,11 @@ public class TMGrupo {
 		return (List<Grupo>) grupos;
 	}
 	
-	public static Grupo RecuperaGrupo(long grupoId) throws Exception{
-			if(grupoId <0){
+	public static Grupo RecuperaGrupo(GrupoGateway g) throws Exception{
+			if(g.getId() <0){
 				throw new IllegalArgumentException("id");
 			}
 			
-			GrupoGateway g = GrupoFinder.recuperaPorId(grupoId);
 			Grupo gRet = new Grupo(g.getId(),g.getNome(),g.getDescricao(),g.getRegras(),g.getLimAvalicao());
 			return gRet;
 	}
@@ -104,7 +102,6 @@ public class TMGrupo {
 		if(email == null || email.isEmpty()){
 			throw new IllegalArgumentException("email");
 		}
-		
 		UsuarioGrupoGateway insert = new UsuarioGrupoGateway(idGrupo);
 		insert.convidarUsuario(email);
 	}

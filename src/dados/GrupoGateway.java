@@ -39,6 +39,13 @@ public class GrupoGateway {
 		this.limAvalicao = limAvalicao;
 	}
 	
+	public GrupoGateway(String nome, String descricao, int limAvalicao) {
+		super();
+		this.nome = nome;
+		this.descricao = descricao;
+		this.limAvalicao = limAvalicao;
+	}
+	
 	public void alterarGrupo()throws ConexaoException, SQLException, ClassNotFoundException {
 			
 			Conexao.initConnection();

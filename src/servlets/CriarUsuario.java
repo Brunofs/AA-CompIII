@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.beans.finder.FieldFinder;
+
+import dados.UsuarioFinder;
+import dados.UsuarioGateway;
 import dominio.TMUsuario;
 import excecoes.ConexaoException;
 import excecoes.EmailInvalida;
@@ -45,21 +49,24 @@ public class CriarUsuario extends HttpServlet {
 	}
 
 	/**
+	 * @throws IOException 
+	 * @throws ServletException 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		// TODO Auto-generated method stub
 		String nome = (String) request.getParameter("nome");
 		String email = (String) request.getParameter("email");
 		String telefone = (String) request.getParameter("telefone");
-		
+		UsuarioFinder.recuperaUsuarioPorEmail(email);
+		UsuarioGateway userCriacao =new  UsuarioGateway(nome,email,telefone);
 		TMUsuario user = new TMUsuario();
-		try {
-			user.CriarUsuario(nome, email, telefone);
-		} catch (ClassNotFoundException | ConexaoException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		long ret=user.CriarUsuario(userCriacao);
+		
+		if(ret!=-1){
+			request.getRequestDispatcher("/").forward(request, response);
+		}else{
+			request.getRequestDispatcher("/erro666.jsp").forward(request, response);
 		}
-		request.getRequestDispatcher("/").forward(request, response);
 	}
 }

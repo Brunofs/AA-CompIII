@@ -12,7 +12,7 @@
 	<%Grupo grupo = (Grupo) request.getAttribute("Grupo");%>
 	
 	<form  action="AlterarGrupo" method="post">
-		<input hidden="true" name="id" value=<%=grupo.getId() %>>
+		<input hidden="true" name="idGrupo" value=<%=grupo.getId() %>>
 		Nome: <input type="text" name="nome" value='<%=grupo.getNome()%>'><br>
 		Descrição: <input  type="text" name="descricao" value='<%=grupo.getDescricao()%>'><br>
 		Lista de Regras <input readOnly="true"type="text" name="regras"value='<%=grupo.getRegras()%>'><br>

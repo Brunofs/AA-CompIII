@@ -21,7 +21,6 @@ import entidades.Veiculo;
 import excecoes.ConexaoException;
 import excecoes.emailInvalido;
 import excecoes.usuarioJaCadastradoaCarona;
-import javafx.scene.chart.PieChart.Data;
 
 /**
  * Servlet implementation class CriarCarona

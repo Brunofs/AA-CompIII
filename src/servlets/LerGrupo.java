@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dados.GrupoFinder;
+import dados.GrupoGateway;
 import dominio.TMGrupo;
 import dominio.TMUsuario;
 import entidades.Grupo;
@@ -36,11 +38,11 @@ public class LerGrupo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long idGrupo = Long.parseLong(request.getParameter("id"));
 		long idUser  = Long.parseLong(request.getParameter("idUser"));
-		TMGrupo aux = new TMGrupo();
-		TMUsuario user = new TMUsuario();
+		GrupoGateway novo = GrupoFinder.recuperaPorId(idGrupo);
+		
 		try {
-			Grupo grupo = aux.RecuperaGrupo(idGrupo);
-			Usuario userD = user.RecuperaUsuario(idUser);
+			Grupo grupo = TMGrupo.RecuperaGrupo(novo);
+			Usuario userD = TMUsuario.RecuperaUsuario(idUser);
 			request.setAttribute("Grupo",grupo);
 			request.setAttribute("Usuario",userD);
 

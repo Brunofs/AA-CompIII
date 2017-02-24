@@ -1,15 +1,24 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.jndi.dns.ResourceRecord;
+
+import dados.GrupoFinder;
 import dados.GrupoGateway;
+import dados.UsuarioFinder;
+import dados.UsuarioGateway;
 import dominio.TMGrupo;
+import dominio.TMUsuario;
 import entidades.Grupo;
+import excecoes.ConexaoException;
 
 /**
  * Servlet implementation class ConvidarUsuario
@@ -34,9 +43,10 @@ public class ConvidarUsuario extends HttpServlet {
 				String idd = request.getParameter("id");
 				long id= Long.parseLong(idd);
 				TMGrupo novo = new TMGrupo();
+				GrupoGateway grupo = GrupoFinder.recuperaPorId(id);
 				Grupo aux;
 				try {
-					aux = novo.RecuperaGrupo(id);
+					aux = novo.RecuperaGrupo(grupo);
 					request.setAttribute("Grupo",aux);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -53,6 +63,17 @@ public class ConvidarUsuario extends HttpServlet {
 		long idGrupo = Long.parseLong(request.getParameter("id"));
 		String emailConvidado = request.getParameter("email");
 		TMGrupo novo =new  TMGrupo();
+		UsuarioGateway userExistente=UsuarioFinder.recuperaUsuarioPorEmail(emailConvidado);
+		
+		if(userExistente==null){
+			try {
+				TMUsuario.CriarUsuario(emailConvidado);
+			} catch (ClassNotFoundException | ConexaoException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		novo.convidarUsuario(emailConvidado, idGrupo);
 		doGet(request, response);
 	}

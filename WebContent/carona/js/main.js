@@ -1,6 +1,5 @@
 
 $(document).ready( function() {
-	alert("OK");
 	$("#cep").change(function(){
 		var cep_code = $(this).val();
 		if( cep_code.length <= 0 ) return;
@@ -20,7 +19,6 @@ $(document).ready( function() {
 		});
 	});
 	$("#cep-ori").change(function(){
-		alert("cep");
 		var cep_code = $(this).val();
 		if( cep_code.length <= 0 ) return;
 		$.get("http://apps.widenet.com.br/busca-cep/api/cep.json", { code: cep_code },

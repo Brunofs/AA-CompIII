@@ -23,6 +23,15 @@ public class UsuarioGateway {
 	
 	
 	
+	
+	public UsuarioGateway(String email) {
+		super();
+		this.email = email;
+	}
+
+
+
+
 	public UsuarioGateway(String nome, String email, String telefone) {
 		super();
 		this.nome = nome;

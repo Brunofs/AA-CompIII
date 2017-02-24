@@ -68,7 +68,7 @@ public class TMVeiculo {
 		ArrayList<Veiculo> vei = new ArrayList<Veiculo>();
 
 		if(veiculoGateway.size() <=0 ){
-			throw new usuarioNaoPossuiVeiculos();
+			throw new IllegalArgumentException("Não possui veiculos!!");
 		}
 
 		for(VeiculoGateway v : veiculoGateway){

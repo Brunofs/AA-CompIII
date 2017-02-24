@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dados.UsuarioFinder;
 import dados.UsuarioGateway;
 import dominio.TMUsuario;
 import entidades.Usuario;
@@ -38,16 +39,19 @@ public class AlterarUsuario extends HttpServlet {
 		// TODO Auto-generated method stub
 		String idd = request.getParameter("id");
 		long id= Long.parseLong(idd);
+		UsuarioGateway userEnc=UsuarioFinder.recuperaUsuario(id);
+		
 		TMUsuario novo = new TMUsuario();
 		Usuario aux;
 		try {
-			aux = novo.RecuperaUsuario(id);
+			aux = novo.RecuperaUsuario(userEnc.getId());
+			
 			request.setAttribute("Usuario",aux);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("./AlterarUsuario.jsp").forward(request,response);
+		request.getRequestDispatcher("usuario/AlterarUsuario.jsp").forward(request,response);
 	}
 
 	/**
@@ -58,10 +62,11 @@ public class AlterarUsuario extends HttpServlet {
 		String idd = (String) request.getParameter("id");
 		long id= Long.parseLong(idd);
 		String nome = request.getParameter("nome");
+		String email = request.getParameter("email");
 		String telefone =  request.getParameter("telefone");
 		TMUsuario aux = new TMUsuario();
 		aux.alterarUsuario(id,nome,telefone);
-		request.getRequestDispatcher("/").forward(request,response);
+		request.getRequestDispatcher("./LerUsuario?email="+email).forward(request,response);
 
 	}
 

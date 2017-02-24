@@ -11,24 +11,16 @@ import excecoes.ConexaoException;
 
 public class TMUsuario {
 	
+
 	public TMUsuario(){
 	}
 	
-	public static Long CriarUsuario(String nome,String email,String telefone) throws ClassNotFoundException, ConexaoException, SQLException{
-		System.out.println("TM CR");
-		if(nome == null || nome.isEmpty()){
-			throw new IllegalArgumentException("nome");
-		}
-		
+	public static Long CriarUsuario(String email) throws ClassNotFoundException, ConexaoException, SQLException{
 		if(email == null || email.isEmpty()){
 			throw new IllegalArgumentException("email");
 		}
 		
-		if(telefone == null || telefone.isEmpty()){
-			throw new IllegalArgumentException("telefone");
-		}
-		
-		UsuarioGateway usuario = new UsuarioGateway(nome, email, telefone);
+		UsuarioGateway usuario = new UsuarioGateway(email);
 		usuario.salvarUsuario();
 		long id = usuario.getId();
 		return id;
@@ -78,6 +70,37 @@ public class TMUsuario {
 	public static void DeletarUsuario(long id) throws Exception {
 		UsuarioGateway u = UsuarioFinder.recuperaUsuario(id);
 		u.deletarUsuario();
+	}
+
+	public long CriarUsuario(UsuarioGateway userCriacao) {
+	
+		if(userCriacao.getNome() == null || userCriacao.getNome().isEmpty()){
+			throw new IllegalArgumentException("nome");
+		}
+		
+		if(userCriacao.getEmail() == null || userCriacao.getEmail().isEmpty()){
+			throw new IllegalArgumentException("email");
+		}
+		
+		if(userCriacao.getTelefone() == null || userCriacao.getTelefone().isEmpty()){
+			throw new IllegalArgumentException("telefone");
+		}
+		long id=-1;
+		UsuarioGateway verificacao= UsuarioFinder.recuperaUsuarioPorEmail(userCriacao.getEmail());
+		
+		if(verificacao ==null){
+			try {
+				userCriacao.salvarUsuario();
+				id = userCriacao.getId();
+			} catch (ClassNotFoundException | ConexaoException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+		}else{
+			throw new IllegalArgumentException("Já existe usuario com esse Email!");
+		}
+		
+		return id;
 	}
 	
 

@@ -10,10 +10,9 @@
 </head>
 <body>
 
-<%Usuario usuario = (Usuario) request.getAttribute("Usuario");%>
 	
 	<form  action="CriarGrupo" method="post">
-		<input hidden="true" name="id"value=<%=usuario.getId() %>>
+		<input hidden="true" name="idUsuario"value=<%=request.getAttribute("idUsuario")%>>
 		Nome: <input type="text" name="nome" ><br>
 		Descrição: <input  type="text" name="descricao" ><br>
 		Lista de Regras <input type="text" name="regras"><br>
