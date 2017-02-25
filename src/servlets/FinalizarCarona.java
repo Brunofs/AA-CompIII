@@ -38,6 +38,7 @@ public class FinalizarCarona extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long idCarona = Long.parseLong(request.getParameter("idCarona"));
 		long idUsuario = Long.parseLong(request.getParameter("idUsuario"));
+		
 		TMCarona.FinalizarCarona(idCarona,idUsuario);
 		
 
